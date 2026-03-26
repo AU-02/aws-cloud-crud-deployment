@@ -45,13 +45,13 @@ User → Nginx → (Frontend + Backend API) → PostgreSQL
 
 # 1. Clone Repository
 
-- git clone https://github.com/YOUR_USERNAME/aws-cloud-crud-deployment.git
+- git clone (https://github.com/AU-02/aws-cloud-crud-deployment.git)
 - cd aws-cloud-crud-deployment
   
 # 2. Run with Docker
 - docker-compose up --build
 # 3. Access Application
-- http://localhost
+- (http://107.20.74.253/)
 # 4. AWS Deployment (EC2)
 Steps:
 - Launch EC2 instance:

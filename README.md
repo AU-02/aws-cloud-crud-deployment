@@ -100,6 +100,33 @@ Fixed Django ALLOWED_HOSTS issue in Docker
 Resolved Nginx reverse proxy routing issues
 Handled multipart/form-data for file uploads
 Solved Docker storage limitations on EC2
+
+# Simple Infrastructure Diagram
+               User (Browser)
+                      |
+                      ↓
+              ┌──────────────┐
+              │    Nginx     │
+              │ (Port 80/443)│
+              └──────┬───────┘
+                     |
+         ┌───────────┴───────────┐
+         ↓                       ↓
+    ┌────────────┐        ┌────────────┐
+    │  Frontend  │        │  Backend   │
+    │  (React)   │        │ (Django)   │
+    └────────────┘        └──────┬─────┘
+                                 ↓
+                          ┌────────────┐
+                          │ PostgreSQL │
+                          └────────────┘
+                                 ↓
+                          ┌────────────┐
+                          │    S3      │
+                          │ (Storage)  │
+                          └────────────┘
+
+
 # Conclusion
 
 This project demonstrates a complete cloud-native application deployment using modern DevOps practices, including containerization, reverse proxying, and AWS infrastructure setup.

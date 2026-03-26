@@ -4,6 +4,7 @@ import axios from "axios";
 function App() {
   const [tasks, setTasks] = useState([]);
   const [title, setTitle] = useState("");
+  const [file, setFile] = useState(null);
 
   const fetchTasks = async () => {
     const res = await axios.get("/api/tasks/");
@@ -16,16 +17,18 @@ function App() {
     const formData = new FormData();
     formData.append("title", title);
 
-    await axios.post("/api/tasks/", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    if (file) {
+      formData.append("file", file);
+    }
+
+    await axios.post("/api/tasks/", formData);
 
     setTitle("");
+    setFile(null);
+
     fetchTasks();
   };
-  
+
   const deleteTask = async (id) => {
     await axios.delete(`/api/tasks/${id}/`);
     fetchTasks();
@@ -39,6 +42,7 @@ function App() {
     <div>
       <h1>Tasks</h1>
       <input value={title} onChange={(e) => setTitle(e.target.value)} />
+      <input type="file" onChange={(e) => setFile(e.target.files[0])} />
       <button onClick={addTask}>Add</button>
 
       <ul>

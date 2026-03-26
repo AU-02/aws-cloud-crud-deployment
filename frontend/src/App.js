@@ -11,6 +11,7 @@ function App() {
   };
 
   const addTask = async () => {
+    if (!title.trim()) return;   //
     await axios.post("/api/tasks/", { title });
     setTitle(""); //clears the search field
     fetchTasks();

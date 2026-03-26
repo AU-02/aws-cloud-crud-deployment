@@ -11,12 +11,21 @@ function App() {
   };
 
   const addTask = async () => {
-    if (!title.trim()) return;   //
-    await axios.post("/api/tasks/", { title });
-    setTitle(""); //clears the search field
+    if (!title.trim()) return;
+
+    const formData = new FormData();
+    formData.append("title", title);
+
+    await axios.post("/api/tasks/", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    setTitle("");
     fetchTasks();
   };
-
+  
   const deleteTask = async (id) => {
     await axios.delete(`/api/tasks/${id}/`);
     fetchTasks();

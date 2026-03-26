@@ -42,7 +42,6 @@ function App() {
     <div>
       <h1>Tasks</h1>
       <input value={title} onChange={(e) => setTitle(e.target.value)} />
-      <input type="file" onChange={(e) => setFile(e.target.files[0])} />
       <button onClick={addTask}>Add</button>
 
       <ul>
